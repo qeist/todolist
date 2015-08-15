@@ -1,0 +1,50 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>TodoList</h1>
+  <ul id='gonna'>
+    <li class='list'></li>
+  </ul>
+  <label>Todo : </label>
+  <input type="text" id="text-input"/>
+  <button type="button" class="apply-btn">등록</button>
+  <h1>Done</h1>
+
+  <ul id='did'>
+  </ul>
+
+</body>
+</html>
+<script>
+  var list_box = document.getElementsByClassName('list')[0];
+  console.log(list_box);
+  document.getElementById('gonna').removeChild(document.getElementsByClassName('list')[0])
+
+  document.getElementsByClassName('apply-btn')[0].onclick = function(e) {
+    if (document.getElementById('text-input').value == '') {
+        alert("입력하세요.");
+    } else {
+
+        var list = list_box.cloneNode(true);
+
+        var text = document.getElementById('text-input').value;
+        list.innerHTML = text + '<input type="checkbox" class="success" />';
+        document.getElementById('gonna').appendChild(list);
+        document.getElementById('text-input').value = '';
+    }
+
+
+  }
+
+  document.body.onclick = function(e) {
+    if (e.target.className == 'success') {
+        document.getElementById('did').appendChild(e.target.parentNode);
+        e.target.className = 'ok_list';
+        e.target.checked = false;
+    }
+
+  }
+  //alert(document.getElementById('text-input').val);
+</script>
